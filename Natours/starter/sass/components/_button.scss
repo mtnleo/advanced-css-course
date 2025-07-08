@@ -1,4 +1,5 @@
 .btn {
+    &,
     &:link,
     &:visited {
         text-transform: uppercase;
@@ -11,6 +12,10 @@
         transition: all .2s;
         position: relative; /*So ::after can pivot here*/
         font-size: $default-font-size;
+
+        // Change for <button> element
+        border: none;
+        cursor: pointer;
     }
 
     &:hover {
@@ -24,7 +29,9 @@
 
     }
 
-    &:active {
+    &:active,
+    &:focus {
+        outline: none;
         transform: translateY(-0.1rem); /*-1 relative to :link and :visited*/
         box-shadow: 0 0.5rem 1rem rgba($color-black,.2); /*No offset in X, 10px offset in Y, 20px blur, 20% opacity black*/
     }
