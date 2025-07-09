@@ -1,14 +1,22 @@
 .header {
-    height: 95vh; /*95% of VH*/
+    height: 85vh; /*95% of VH*/
     background-image: linear-gradient(to right bottom, rgba($color-primary-light, 0.8), rgba($color-primary-dark, 0.8)), url(../img/hero-small.jpg); 
     background-size: cover; /*Fits the element into its container*/
     background-position: top; /*Make sure the top always is on the same place, whenever you move it*/
 
     position: relative;
 
-    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    
+    @supports (clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%)) or (-webkit-clip-path: polygon(0 0)) {
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+        height: 95vh; /*95% of VH*/
+    }
 
-    @media (min-resolution: 192dpi) and (min-width: 600px), (min-width: 2000px) { // Apple retina screen
+
+    @media only screen and (min-resolution: 192dpi) and (min-width: 600px),
+            only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 600px),
+            only screen and (min-width: 2000px) { // Apple retina screen
         background-image: linear-gradient(to right bottom, rgba($color-primary-light, 0.8), rgba($color-primary-dark, 0.8)), url(../img/hero.jpg); 
 
     }
